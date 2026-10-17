@@ -1,12 +1,15 @@
-# Safety
+# 실물 시험 조건
 
-This is experimental hardware. Joint mechanical limits and calibration have NOT been validated.
-- Secure robot and clear workspace.
-- Keep a physical motor power cutoff reachable. Ctrl+C is not an emergency stop.
-- Read present position first; set goal to present before enabling torque.
-- Energize only the selected joint for initial testing.
-- Begin with tiny movements and confirm physical motion.
-- ±60 ticks from startup is a software envelope, not a verified mechanical limit.
-- Do not drop gravity-loaded shoulder/elbow joints by disabling torque without support.
-- Do not run calibration or motor-ID setup automatically.
-- Investigate prior unexpected wrist ~360° rotation before automated motion.
+1. 베이스를 고정하고 팔과 집게 하중을 지지합니다. 어깨·팔꿈치 토크 OFF는 낙하를 일으킬 수 있습니다.
+2. 물리적 전원 차단을 손에 닿게 준비합니다. Ctrl+C는 하드웨어 비상 정지가 아닙니다.
+3. USB 포트는 로컬에서 식별해 CLI/환경변수/외부 설정으로 전달합니다. 코드에 기본 장치 경로를 넣지 않습니다.
+4. 연결·상태 읽기·자세 저장·미리보기는 모터 쓰기를 하지 않습니다. 이동은 대상·이동량별 명시적 동의 후 실행합니다.
+5. 현재 실물 제어는 한 번에 한 관절만 켭니다. 초기 다른 관절 토크가 켜져 있으면 변경 없이 거부합니다. 임의로 전체 OFF하지 않습니다.
+6. 각 단계 종료 후 선택 관절의 토크 OFF를 읽어 확인합니다. 지지가 풀리거나 물체가 떨어지지 않도록 준비합니다.
+7. raw ticks는 보정된 각도가 아닙니다. 설정된 세션 범위는 검증된 기계적 범위가 아닙니다.
+8. 저장 자세와 현재 장치의 설정 지문이 다르면 재생을 거부합니다. mock/live 자세도 섞지 않습니다.
+9. 오류가 나면 이후 움직임을 막습니다. 통신 실패 시 정리 명령은 실패할 수 있으므로 현장 조치가 필요합니다.
+10. 자동 캘리브레이션, ID 변경, 펌웨어 기록, 속도/토크 설정 초기화는 수행하지 않습니다.
+11. 과거 손목 약 360° 회전 이력은 미해결로 기록합니다. 손목은 기능에서 제외하지 않지만 실제 방향·보정·간섭을 관찰합니다.
+
+전체 팔을 자동으로 원점 이동하거나 끝점까지 왕복시키는 기능은 없습니다. 실물 다관절 연속 운전은 중력 하중의 유지/정지/복구 방식과 작업 공간을 확인한 뒤 추가합니다.

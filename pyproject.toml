@@ -3,14 +3,15 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mushroom-control"
+name = "robot-trial"
 version = "0.1.0"
-description = "Mock-first mushroom cultivation control"
+description = "SO-ARM101 mock-first robot trials and BMT"
 requires-python = ">=3.11"
 dependencies = []
 
 [project.scripts]
-mushroom-control = "mushroom_control.cli:main"
+robot-trial = "robot_trial.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["robot_trial*"]

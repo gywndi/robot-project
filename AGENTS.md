@@ -1,6 +1,6 @@
 # Agent instructions — SO-ARM101
 
-Goal: Independent SO-ARM101 Follower control, eventually camera-guided shiitake harvesting.
+Goal: SO-ARM101 robot trials and BMT: joint motion, telemetry, repeatability, and control behavior.
 
 Environment: Apple Silicon macOS, Python 3.11, LeRobot, FeetechMotorsBus.
 Verified import:
@@ -22,4 +22,10 @@ Rules:
 11. Never claim mechanical limits are validated without measurements.
 12. Document each test's command, measured values, and physical observation.
 
-Next: Build reusable RobotController, mock mode, joint bounds, read-only Leader telemetry, keyboard CLI, and safety tests.
+Next: Harden reusable RobotController, mock mode, joint bounds, Follower-only keyboard jog, pose capture, validated trajectory preview/replay, and safety tests. Leader telemetry/teleoperation is out of scope at user request.
+
+13. Never hardcode USB/serial ports, device IDs, or machine-specific paths in executable code. Require explicit CLI arguments or external configuration/environment variables; missing values must fail before connection.
+14. Do not use previously observed ports as defaults. Keep committed port examples empty; keep local port settings out of version control.
+15. Keep trial step sizes and software envelopes in external configuration. These are not measured mechanical limits.
+
+Project layout: Keep transport.py, controller.py, safety.py, and cli.py as the core. Reuse config/robot.toml and config/poses.json; do not add a new script/config file for each trial. Store runtime JSONL in logs/. Historical experiments are archived in docs/archive/robot-trials-2026-10-17.zip.

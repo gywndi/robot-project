@@ -1,0 +1,50 @@
+# Trial settings, NOT measured mechanical limits. No automatic hardware setup.
+[connection]
+port = "" # Or FOLLOWER_PORT / --port. No built-in device default.
+
+[files]
+poses = "config/poses.json"
+
+[logging]
+directory = "logs"
+
+[control]
+timeout_seconds = 2.0
+poll_seconds = 0.1
+preview_duration_seconds = 3.0
+
+[joints.shoulder_pan]
+mock_start_ticks = 2000
+max_offset_ticks = 20
+max_step_ticks = 5
+tolerance_ticks = 3
+
+[joints.shoulder_lift]
+mock_start_ticks = 2000
+max_offset_ticks = 20
+max_step_ticks = 5
+tolerance_ticks = 3
+
+[joints.elbow_flex]
+mock_start_ticks = 2000
+max_offset_ticks = 20
+max_step_ticks = 5
+tolerance_ticks = 3
+
+[joints.wrist_flex]
+mock_start_ticks = 2000
+max_offset_ticks = 20
+max_step_ticks = 5
+tolerance_ticks = 3
+
+[joints.wrist_roll]
+mock_start_ticks = 2000
+max_offset_ticks = 20
+max_step_ticks = 5
+tolerance_ticks = 3
+
+[joints.gripper]
+mock_start_ticks = 2500
+max_offset_ticks = 120
+max_step_ticks = 10
+tolerance_ticks = 3
